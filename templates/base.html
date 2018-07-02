@@ -4,13 +4,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tests Tracking System - Search</title>
+<title>Tests Tracking System - {{ name }}</title>
 
 <!-- Style CSS Files -->
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"> 
+{% block custom_css %}{% endblock %}
 
 </head>
 
@@ -20,12 +21,12 @@
 		<div class = "row h-100">
 			<div class="col-md-2 d-none d-md-block sidenav bg-dark">
 				<div class="sidenav-header">
-					<img src="assets/img/netbsd.png" width="94" height="72">
+					<img src="{{ url_for('static', filename='img/netbsd.png')}}" width="94" height="72">
 				</div>
 				<hr />
-				<a class="sidebar-active" href="#"><i class="fa fa-search"></i> Search</a><hr />
-				<a href="#"><i class="fa fa-upload"></i> Upload New Test Data</a><hr />
-				<a href="#"><i class="fa fa-list"></i> My Testing Environments</a>
+				<a {% if page == "search" %}class="sidebar-active"{% endif %} href="#"><i class="fa fa-search"></i> Search</a><hr />
+				<a {% if page == "upload" %}class="sidebar-active"{% endif %} href="#"><i class="fa fa-upload"></i> Upload New Test Data</a><hr />
+				<a {% if page == "testing_environments" %}class="sidebar-active"{% endif %} href="#"><i class="fa fa-list"></i> My Testing Environments</a>
 			</div>
 			
 			<div class="col-md-10 bg-white main offset-md-2">
@@ -48,10 +49,10 @@
 									<a class="dropdown-item" href="#">My Testing Environments</a>
 								</div>
 							</li>
-							<li class="nav-item">
+							<li class="nav-item {% if page == 'test_data_websites' %}active{% endif %}">
 								<a class="nav-link" href="#"><i class="fa fa-list-alt"></i> Test Data Websites</a>
 							</li>
-							<li class="nav-item nav-middle">
+							<li class="nav-item nav-middle {% if page == 'settings' %}active{% endif %}">
 								<a class="nav-link" href="#"><i class="fa fa-sliders"></i> Settings</a>
 							</li>
 							<li class="nav-item">
@@ -62,15 +63,10 @@
 				</nav>
 				<div class="col-md-12">
 					<!-- Main Page Section -->
-					<h1 class="page-header">Search:</h1>
+					<h1 class="page-header">{{ header }}:</h1>
 					<hr />
 					<div class="row">
-						<div class="col-md-7 col-sm-12 form">
-
-						</div>
-						<div class="col-md-5 form pt-4">
-							
-						</div>
+						{% block content %}{% endblock %}
 					</div>
 						<!-- End of Main Page Section -->
 				</div>
@@ -80,9 +76,10 @@
 		
 	
 	<!-- Javascript Files -->
-	<script type="text/javascript" src="assets/js/jquery-3.3.1.slim.min.js"></script>
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+	{% block custom_javascript %}{% endblock %}
 
 </body>
 

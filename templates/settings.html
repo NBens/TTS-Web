@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-8 col-sm-12">
+	<form action="" class="form">
+		<div class="form-group">
+			<label for="username">Username:</label>
+			<input type="text" class="form-control" aria-describedby="usernameInfo" placeholder="Enter New Username">
+			<small id="usernameInfo" class="form-text text-muted">Keep this field as it is if you don't want to change your username.</small>
+		</div>
+		<div class="form-group">
+			<label for="newpassword">New Password:</label>
+			<input type="password" class="form-control" aria-describedby="newpasswordInfo" placeholder="New Password">
+			<small id="newpasswordInfo" class="form-text text-muted">Keep this field empty if you don't want to change your password.</small>
+		</div>
+		<div class="form-group pb-4">
+			<label for="re-password">Repeat New Password:</label>
+			<input type="password" class="form-control" placeholder="Repeat Password">
+		</div>
+		<hr />
+		<div class="form-group">
+			<label for="currentPassword">Current Password:</label>
+			<input type="password" class="form-control" placeholder="Current Password">
+			<small id="currentPasswordInfo" class="form-text text-muted">Enter your current password to confirm the changes.</small>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Update Settings">
+	</form>
+</div>
+<div class="col-md-4 form pt-4">
+	<div class="card text-white bg-primary mb-3 border-dark" style="max-width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">Settings</h5>
+			<p class="card-text">Change your username or password.</p>
+		</div>
+	</div>						
+</div>	
+{% endblock %}

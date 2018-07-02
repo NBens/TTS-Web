@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-8 col-sm-12 form pb-4">
+	<h4>Edit Testing Environment: <span class="text-primary">Testing Environment 27</span></h4>
+	<hr />
+	<form action="" class="form">
+		<div class="form-group">
+			<label for="username">Name:</label>
+			<input type="text" class="form-control" aria-describedby="nameInfo" placeholder="Enter New Name">
+			<small id="nameInfo" class="form-text text-muted">Keep this field as it is if you don't want to change the name.</small>
+		</div>
+		<div class="form-group">
+			<label for="username">Platform:</label>
+			<input type="text" class="form-control" aria-describedby="platformInfo" placeholder="Enter New Platform">
+			<small id="platformInfo" class="form-text text-muted">Keep this field as it is if you don't want to change the platform.</small>
+		</div>
+		<div class="form-group">
+			<label for="descriptionInfo">Description:</label>
+			<textarea class="form-control" rows="3"></textarea>
+			<small id="descriptionInfo" class="form-text text-muted">Keep this field as it is if you don't want to change the description.</small>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox">
+			<label class="form-check-label" for="defaultCheck1">
+				Set it as default environment.
+			</label>
+		</div>
+		<hr />
+		<div class="form-group">
+			<label for="currentPassword">Admin Password:</label>
+			<input type="password" class="form-control" placeholder="Admin Password">
+			<small id="currentPasswordInfo" class="form-text text-muted">Enter your password to confirm the changes.</small>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Update Testing Environment">
+	</form>							
+</div>
+<div class="col-md-4 form">
+	<h4>New Testing Environment:</h4>
+	<hr />
+	<form action="" method="post">
+		<div class="form-group">
+			<label for="envName">Name:</label>
+			<input type="text" class="form-control" placeholder="Environment Name">
+			<small class="form-text text-muted">Enter a unique name for this environment.</small>
+		</div>								
+		<div class="form-group">
+			<label for="envPlatform">Platform:</label>
+			<input type="text" class="form-control" placeholder="Environment Platform">
+		</div>								
+		<div class="form-group">
+			<label for="envDescription">Description:</label>
+			<textarea class="form-control" rows="3"></textarea>
+		</div>					
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox">
+			<label class="form-check-label" for="defaultCheck1">
+				Set it as default environment.
+			</label>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Create">
+	</form>
+</div>
+{% endblock %}
