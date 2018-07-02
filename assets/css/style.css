@@ -1,0 +1,135 @@
+/* Color palette: White, Orange, Black, Grey
+
+White: #FFF;
+Orange: #fa8231 (Dark), #f39c12 (Light)
+Grey: #bdc3c7 (Light), #787878 (Dark)
+Black: #000
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:300); 
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
+
+.btn-primary {
+	background: #fa8231;
+	border:1px solid #f39c12;
+}
+.btn-primary:hover {
+	background:#f39c12;
+	border:1px solid #fa8231;
+}
+.btn-outline-primary {
+	border:1px solid #f39c12;
+	color: #f39c12;
+}
+.btn-outline-primary:hover {
+	border:1px solid #fa8231;
+	color: #FFF;
+	background: #f39c12;
+}
+
+div *, button *, input * {
+	border-radius:0 !important;
+}
+.navbar-brand {
+	font-size:0.9em;
+	font-weight: 700;
+	color: #fa8231 !important;
+}
+
+html, body {
+    background: #f1f2f6;
+    height:100%;
+    font-family: 'Roboto Mono', monospace;
+}
+.form-container {
+	padding: 20px;
+	margin-top:25px;
+	border:1px solid #fa8231;
+	background: #FFF;
+}
+.bg-primary {
+	background-color: #fa8231 !important;
+}
+.text-primary {
+    color: #fa8231 !important;
+}
+
+
+.sidenav {
+    height: 100%;
+    left: 0;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+    padding-top: 20px;
+    position:fixed;
+}
+
+.sidenav a {
+    padding: 8px 4px 8px 0px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #FFF;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #e67e22;
+}
+.sidebar-active, .sidebar-active i, .nav-item.active a, .nav-item.active i  {
+    color: #e67e22 !important;
+}
+
+.sidenav-header {
+    text-align: center;
+}
+.sidenav hr {
+    background-color: #95a5a6; 
+    height: 0.75px; 
+    border: 0; 
+}
+.sidenav i{
+    font-size:15px;
+}
+
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+} 
+
+
+
+.page-header {
+    font-weight: 600;
+    margin-top:20px;
+}
+
+.nav-item {
+    padding-left:5px;
+    font-size:14px;
+}
+.nav-middle {
+    border-left: 1px solid #bdc3c7;
+    border-right: 1px solid #bdc3c7;
+}
+.nav-link i {
+    color:#444;
+    font-size:15px;
+}
+.main {
+    padding-left:0;
+    padding-right:0;
+}
+.form {
+    font-family: 'Lato', sans-serif;
+}
+.custom-file-label::after {
+    border-radius: 0;
+}
+.form-check {
+    padding-bottom:10px;
+}
+a, a:focus, a:hover {
+    text-decoration: none;
+}

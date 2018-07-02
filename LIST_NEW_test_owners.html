@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tests Tracking System - Manage Test Owners</title>
+
+<!-- Style CSS Files -->
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+
+<body>
+
+	<div class="container-fluid h-100">
+		<div class = "row h-100">
+			<div class="col-md-2 d-none d-md-block sidenav bg-dark">
+				<div class="sidenav-header">
+					<img src="assets/img/netbsd.png" width="94" height="72">
+				</div>
+				<hr />
+				<a href="#"><i class="fa fa-search"></i> Search</a><hr />
+				<a href="#"><i class="fa fa-upload"></i> Upload New Test Data</a><hr />
+				<a href="#"><i class="fa fa-list"></i> My Testing Environments</a>
+			</div>
+			
+			<div class="col-md-10 bg-white main offset-md-2">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<a class="navbar-brand" href="#">
+						Tests Tracking System
+					</a>
+									
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+							  
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item d-md-none dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-caret-square-o-down"></i> Menu</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="#">Search</a>
+									<a class="dropdown-item" href="#">Upload New Test Data</a>
+									<a class="dropdown-item" href="#">My Testing Environments</a>
+								</div>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fa fa-list-alt"></i> Test Data Websites</a>
+							</li>
+							<li class="nav-item nav-middle">
+								<a class="nav-link" href="#"><i class="fa fa-sliders"></i> Settings</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+							</li>
+						</ul>	
+					</div>
+				</nav>
+				<div class="col-md-12">
+					<!-- Main Page Section -->
+					<h1 class="page-header">Manage Tests Owners:</h1>
+					<hr />
+					<div class="row">
+						<div class="col-md-8 col-sm-12 form pb-4">
+							<h4>Manage Tests Owners:</h4>
+							<hr />
+							<div class="table-responsive">
+								<table class="table table-bordered table-sm" id="table">
+									<thead class="thead-light">
+										<tr>
+											<th>ID</th>
+											<th>Username</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>GSON</td>
+											<td>
+												<a href="#">View</a> - 
+												<a href="#">Edit</a> - 
+												<a href="#" class="text-danger">Disable</a>
+											</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>Martin</td>
+											<td>
+												<a href="#">View</a> - 
+												<a href="#">Edit</a> - 
+												<a href="#" class="text-danger">Disable</a>
+											</td>
+										</tr>
+										<tr>
+											<td>1</td>
+											<td>SPZ</td>
+											<td>
+												<a href="#">View</a> - 
+												<a href="#">Edit</a> - 
+												<a href="#" class="text-danger">Disable</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>							
+						</div>
+						<div class="col-md-4 form">
+							<h4>New Test Owner:</h4>
+							<hr />
+							<form action="" method="post">
+								<div class="form-group">
+									<label for="username">Username:</label>
+									<input type="text" class="form-control" placeholder="Username">
+									<small class="form-text text-muted">Enter a unique username.</small>
+								</div>								
+								<div class="form-group">
+									<label for="password">Password:</label>
+									<input type="password" class="form-control" placeholder="Password">
+								</div>								
+								<div class="form-group">
+									<label for="rePassword">Repeat Password:</label>
+									<input type="password" class="form-control" placeholder="Repeat Password">
+								</div>					
+								<input type="submit" class="btn btn-primary" value="Create">
+							</form>
+						</div>
+					</div>
+				<!-- End of Main Page Section -->
+				</div>
+			</div>
+		</div>
+	</div>	 
+		
+	
+	<!-- Javascript Files -->
+	<script type="text/javascript" src="assets/js/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="assets/js/popper.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+    		$('#table').DataTable();
+		} );
+	</script>
+</body>
+
+</html>
