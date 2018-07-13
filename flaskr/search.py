@@ -19,6 +19,8 @@ def search():
         os_release = request.form.get("os")
         date = request.form.get("date").replace("/", "-")
         submitted = True
+        sql_append = []
+        sql_query = ""
 
         if empty(keyword):
             flash("Please enter a keyword", "danger")
@@ -65,6 +67,15 @@ def search():
                         """.format(keyword, test_result)
                 else:
                     flash("Please select a valid test result")
+            if not empty(platform):
+                sql_append.append("port LIKE '%{}%'".format(platform.lower()))
+            if not empty(date):
+                sql_append.append("upload_date LIKE '{}%'".format(date))
+            if not empty(os_release):
+                sql_append.append("release LIKE '%{}%'".format(os_release))
+
+            if len(sql_append) > 0:
+                sql_query += " WHERE " + "AND ".join(sql_append)
 
             data = flaskr.database.execute(sql_query).fetchall()
     return render_template("search.html", data=data, submitted=submitted)
