@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tests Tracking System - {{ name }}</title>
+<title>Tests Tracking System - {{ title }}</title>
 
 <!-- Style CSS Files -->
 
@@ -24,9 +24,9 @@
 					<img src="{{ url_for('static', filename='img/netbsd.png')}}" width="94" height="72">
 				</div>
 				<hr />
-				<a {% if page == "search" %}class="sidebar-active"{% endif %} href="#"><i class="fa fa-search"></i> Search</a><hr />
-				<a {% if page == "upload" %}class="sidebar-active"{% endif %} href="#"><i class="fa fa-upload"></i> Upload New Test Data</a><hr />
-				<a {% if page == "testing_environments" %}class="sidebar-active"{% endif %} href="#"><i class="fa fa-list"></i> My Testing Environments</a>
+				<a {% if page == "search" %}class="sidebar-active"{% endif %} href="{{ url_for('search.search') }}"><i class="fa fa-search"></i> Search</a><hr />
+				<a {% if page == "upload" %}class="sidebar-active"{% endif %} href="{{ url_for('main.upload') }}"><i class="fa fa-upload"></i> Upload New Test Data</a><hr />
+				<a {% if page == "testing_environments" %}class="sidebar-active"{% endif %} href="{{ url_for('manage.testing_environments') }}"><i class="fa fa-list"></i> My Testing Environments</a>
 			</div>
 			
 			<div class="col-md-10 bg-white main offset-md-2">
@@ -50,13 +50,13 @@
 								</div>
 							</li>
 							<li class="nav-item {% if page == 'test_data_websites' %}active{% endif %}">
-								<a class="nav-link" href="#"><i class="fa fa-list-alt"></i> Test Data Websites</a>
+								<a class="nav-link" href="{{ url_for('main.websites') }}"><i class="fa fa-list-alt"></i> Test Data Websites</a>
 							</li>
 							<li class="nav-item nav-middle {% if page == 'settings' %}active{% endif %}">
-								<a class="nav-link" href="#"><i class="fa fa-sliders"></i> Settings</a>
+								<a class="nav-link" href="{{ url_for('settings.settings') }}"><i class="fa fa-sliders"></i> Settings</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+								<a class="nav-link" href="{{ url_for('authentication.logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
 							</li>
 						</ul>	
 					</div>
@@ -76,7 +76,7 @@
 		
 	
 	<!-- Javascript Files -->
-	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
 	{% block custom_javascript %}{% endblock %}

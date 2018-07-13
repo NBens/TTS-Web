@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% set header, title, page = "Test Data Websites", "Test Data Websites", "test_data_websites" %}
 {% block content %}
 <div class="col-md-8 col-sm-12 form pb-4">
 	<div class="table-responsive">
@@ -11,22 +12,12 @@
 			</thead>
 
 			<tbody>
+			{% for row in websites %}
 				<tr>
-					<td>GSON</td>
-					<td><a href="https://google.com">https://google.com</a></td>
+					<td>{{ row[1] }}</td>
+					<td><a href="{{ row[0] }}">{{ row[0] }}</a></td>
 				</tr>
-				<tr>
-					<td>GSON</td>
-					<td><a href="https://google.com">https://google.com</a></td>
-				</tr>
-				<tr>
-					<td>GSON</td>
-					<td><a href="https://google.com">https://google.com</a></td>
-				</tr>
-				<tr>
-					<td>GSON</td>
-					<td><a href="https://google.com">https://google.com</a></td>
-				</tr>
+			{% endfor %}
 			</tbody>
 		</table>
 	</div>

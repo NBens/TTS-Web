@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% set header, title, page = "Search Page", "Search", "search" %}
+{% block content %}
+<div class="col-md-9 col-sm-12 form pb-4">
+	<form action="" class="form pb-4" method="post">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+			  {% for category, message in messages %}
+				<div class="alert alert-{{ category }} alert-dismissible form" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{{ message }}
+				</div>
+			  {% endfor %}
+			{% endif %}
+		{% endwith %}
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="keyword">Keyword:</label>
+				<input type="text" class="form-control mb-2 mr-sm-2" aria-describedby="keyword" placeholder="Keyword" name="keyword" required>
+				<small id="keyword" class="form-text text-muted"></small>
+			</div>
+			<div class="form-group col-md-3">
+				<label for="searchIn">Search in:</label>
+				<select class="custom-select mb-2 mr-sm-2" aria-describedby="searchin" name="category">
+					<option value="tc">Test Cases</option>
+					<option value="tp">Test Programs</option>
+					<option value="stdout">STDOUT</option>
+					<option value="stderr">STDERR</option>
+					<option value="std">STDERR & STDOUT</option>
+				</select>
+				<small id="searchIn" class="form-text text-muted"></small>
+			</div>
+			<div class="form-group col-md-3" id="test-result">
+					<label for="tresult">Test Result:</label>
+					<select class="custom-select mb-2 mr-sm-2" aria-describedby="searchin" name="test-result">
+						<option value="failed">Failed</option>
+						<option value="expected_failure">Expected Failure</option>
+						<option value="skipped">Skipped</option>
+						<option value="passed">Passed</option>
+					</select>
+					<small id="tresult" class="form-text text-muted"></small>
+				</div>
+			<div class="form-group col-md-3">
+				<label for="date">Date:</label>
+				<input type="date" name="date" class="form-control mb-2 mr-sm-2" placeholder="Date">
+				<small id="date" class="form-text text-muted"></small>
+			</div>
+			<div class="form-group col-md-3">
+				<label for="platform">Platform:</label>
+				<input type="text" name="platform" class="form-control mb-2 mr-sm-2" placeholder="Platform">
+				<small id="platform" class="form-text text-muted"></small>
+			</div>
+			<div class="form-group col-md-3">
+				<label for="os">OS Release:</label>
+				<input type="text" name="os" class="form-control mb-2 mr-sm-2" placeholder="OS Release">
+				<small id="os" class="form-text text-muted"></small>
+			</div>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Search">
+	</form>	
+	{% if data|length > 0 and submitted == True %}
+	{% for row in data %}
+		{{ row[0] }}
+	{% endfor %}
+	{%  elif data|length == 0 and submitted == True %}
+		<div class="alert alert-danger">No data has been found</div>
+	{% endif %}						
+</div>
+<div class="col-md-3 form">
+	<div class="card text-white bg-primary border-dark mb-3" style="max-width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">Search</h5>
+			<p class="card-text"></p>
+		</div>
+	</div>						
+</div>
+{% endblock %}
+
+{% block custom_javascript %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("select[name=category]").change(function() {
+			if ($(this).val() == "tp") {
+				$("#test-result").hide();
+			} else {
+				$("#test-result").show();
+			}
+		})
+	});
+</script>
+{% endblock %}

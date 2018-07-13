@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% set header, title, page = "Upload XML/DB Tests", "Upload Test Data", "upload" %}
+{% block content %}
+<div class="col-md-8 col-sm-12 pb-4">
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+		  {% for category, message in messages %}
+			<div class="alert alert-{{ category }} alert-dismissible form" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			{{ message }}
+			</div>
+		  {% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form action="" class="form" enctype="multipart/form-data" method="post">
+
+		<div class="form-group">
+			<label for="filepath">File:</label>
+			<div class="custom-file">
+				<input type="file" class="custom-file-input" id="customFile" name="file">
+				<label class="custom-file-label" id="custom-file-label" for="customFile">Choose file</label>
+			</div>
+			<small id="fileInfo" class="form-text text-muted">.db or .xml files only.</small>
+		</div>
+		{% if testing_environments|length == 0 %}
+			<div class="alert alert-danger">
+				Please create a new testing environment <a href="{{ url_for('manage.testing_environments')}}" class="text-primary">here</a> before uploading test data.
+			</div>
+		{% else %}
+		<div class="form-group">
+			<label for="testEnv">Testing Environment:</label>
+			<select class="custom-select" name="testing-environment" id="testing-environment">
+				{% for environment in testing_environments %}
+				<option value="{{ environment[0] }}">{{ environment[1] }} {% if default_testing_environment == environment[0] %}(DEFAULT) {% endif %}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="card bg-light mb-3">
+			<div class="card-body">
+				<h5 class="card-title"><span id="name">{{ testing_environments[0][1] }}</span> <span class="pull-right"><b>Platform: </b><span id="platform">{{ testing_environments[0][2]|upper }}</span></span></h5>
+				<p class="card-text" id="description">{% autoescape false %}{{ testing_environments[0][3]|replace('\r\n', '<br>') }}{% endautoescape %}</p>
+			</div>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Upload">
+		{% endif %}
+	</form>
+</div>
+<div class="col-md-4 form">
+	<div class="card text-white bg-primary border-dark mb-3" style="max-width: 18rem;">
+		<div class="card-body">
+			<h5 class="card-title">Upload A New Test</h5>
+			<p class="card-text">Select a DB or XML file, choose the appropriate testing environment and click Upload!</p>
+		</div>
+	</div>						
+</div>
+{% endblock %}
+
+{% block custom_javascript %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#testing-environment").change(function() {
+				valuer = $(this).val();
+				$.get("{{ url_for('main.testing_environment', id=123456789) }}".replace("123456789", valuer), function(data, status){
+					data = JSON.parse(data)
+					$("#name").text(data[1])
+					$("#platform").text(data[2].toUpperCase())
+					$("#description").html(data[3].replace(/(?:\r\n|\r|\n)/g, "<br>"))
+				});
+			});
+		});
+	</script>
+{% endblock %}
