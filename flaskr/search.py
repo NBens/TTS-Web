@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from .auth import required_login
+from .auth import required_admin_and_user
 from .utils import empty
 import flaskr
 
@@ -7,7 +7,7 @@ mod = Blueprint('search', __name__)
 
 
 @mod.route('/search', methods=['GET', 'POST'])
-@required_login
+@required_admin_and_user
 def search():
     data = ""
     submitted = False
@@ -79,12 +79,3 @@ def search():
 
             data = flaskr.database.execute(sql_query).fetchall()
     return render_template("search.html", data=data, submitted=submitted)
-
-
-# sql_query = """
-# SELECT DISTINCT tests.* FROM tests
-# INNER JOIN files ON files.content LIKE '%User%'
-# INNER JOIN test_cases on files.test_case_id = test_cases.id
-# INNER JOIN test_programs on test_cases.test_program_id = test_programs.id
-# AND tests.id = test_programs.test_id
-# """

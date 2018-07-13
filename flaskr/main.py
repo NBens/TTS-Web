@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from .auth import required_login
+from .auth import required_login, required_admin_and_user
 from .utils import allowed_file
 from werkzeug.utils import secure_filename
 import flaskr
@@ -10,14 +10,16 @@ mod = Blueprint('main', __name__)
 
 
 @mod.route('/', methods=['GET', 'POST'])
+@required_admin_and_user
 def home():
-    if session.get("user_id"):
+    if session.get("user_type") in ["admin", "tests_owner"]:
         return redirect(url_for('search.search'))
     else:
         return redirect(url_for('authentication.login'))
 
 
 @mod.route("/websites", methods=['GET', 'POST'])
+@required_admin_and_user
 def websites():
     websites_data = flaskr.database.select("test_data_websites", ["url", "name"])
     return render_template("test_data_websites.html", websites=websites_data)

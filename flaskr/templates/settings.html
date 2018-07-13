@@ -18,11 +18,13 @@
 			<input type="text" class="form-control" aria-describedby="usernameInfo" placeholder="Enter New Username" name="username" value="{{ current_username }}" required> 
 			<small id="usernameInfo" class="form-text text-muted">Keep this field as it is if you don't want to change your username.</small>
 		</div>
+		{% if user_type == "admin" %}
 		<div class="form-group">
 			<label for="username">Email:</label>
 			<input type="text" class="form-control" aria-describedby="usernameInfo" placeholder="Enter New Email" name="email" value="{{ current_email }}" required>
 			<small id="usernameInfo" class="form-text text-muted">Keep this field as it is if you don't want to change your email.</small>
 		</div>
+		{% endif %}
 		<div class="form-group">
 			<label for="newpassword">New Password:</label>
 			<input type="password" class="form-control" aria-describedby="newpasswordInfo" placeholder="New Password" name="new-password">

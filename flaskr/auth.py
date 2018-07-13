@@ -58,6 +58,7 @@ def login():
 @mod.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop("user_id", None)
+    session.pop("user_type", None)
     return redirect(url_for('authentication.login'))
 
 
@@ -80,6 +81,18 @@ def required_admin(func):
     @wraps(func)
     def dec(*args, **kwargs):
         if session.get("user_id") is None or session.get('user_type') != "admin":
+            return redirect(url_for('authentication.login'))
+        return func(*args, **kwargs)
+    return dec
+
+
+def required_admin_and_user(func):
+    """ Required login (Administrator & Test Owner - User -) decorator
+        If the admin/user is not logged in, redirect him to the login page
+    """
+    @wraps(func)
+    def dec(*args, **kwargs):
+        if session.get("user_id") is None:
             return redirect(url_for('authentication.login'))
         return func(*args, **kwargs)
     return dec
